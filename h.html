@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Proposal</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ffcccc, #ff99cc);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container, .response-container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .header_text {
+            font-size: 2.5em;
+            color: #ff3366;
+            margin-bottom: 20px;
+            animation: fadeIn 2s;
+        }
+        .message {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeIn 4s;
+        }
+        .heart {
+            color: #ff3366;
+            font-size: 3em;
+            animation: beat 1s infinite;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-no {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+        .btn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .hearts div {
+            position: absolute;
+            bottom: -150px;
+            width: 15px;
+            height: 15px;
+            background: #ff3366;
+            animation: animate 5s linear infinite;
+        }
+        .hearts div:before,
+        .hearts div:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ff3366;
+            border-radius: 50%;
+        }
+        .hearts div:before {
+            top: -15px;
+            left: 0;
+        }
+        .hearts div:after {
+            left: 15px;
+            top: 0;
+        }
+        @keyframes animate {
+            0% {
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        .proposal-image {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    <div class="container" id="proposal-container">
+        <div class="header_text">To My Dearest Situ</div>
+        <div class="message">i love you so much,i cannot imagine my life without you yrr.Please accept my love and be with me forever as mine only. Will you be my love for rest of my life?</div>
+        <div class="heart">❤️</div>
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="showResponse()">Yes</button>
+            <button class="btn btn-no" id="btn-no">No</button>
+        </div>
+    </div>
+    <div class="response-container" id="response-container">
+        <div class="header_text">I Love You Too, My Cutie!</div>
+        <div class="heart">❤️</div>
+    </div>
+    <audio id="background-music" src="https://www.bensound.com/bensound-music/bensound-love.mp3" autoplay loop></audio>
+    <script>
+        const btnNo = document.getElementById('btn-no');
+        btnNo.addEventListener('mouseover', function() {
+            const x = Math.floor(Math.random() * (window.innerWidth - btnNo.clientWidth));
+            const y = Math.floor(Math.random() * (window.innerHeight - btnNo.clientHeight));
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        });
+
+        // Heart animation
+        const hearts = document.querySelector('.hearts');
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            hearts.appendChild(heart);
+        }
+
+        function showResponse() {
+            document.getElementById('proposal-container').style.display = 'none';
+            document.getElementById('response-container').style.display = 'block';
+        }
+
+        // Show proposal container on load
+        document.getElementById('proposal-container').style.display = 'block';
+    </script>
+</body>
+</html>
